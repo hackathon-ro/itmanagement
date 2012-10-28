@@ -9,10 +9,11 @@ URL:
 
 Masa Nr: 11
 Categorie: Web
-
+si
 v1.0.0 - Florin-Mihai Iliescu - iliescufm@yahoo.com Versiune Initiala
 v1.1.0 - Bogdan Stirbat - bogdan.stirbat@gmail.com Modificare functie cautare pentru zf.
-v1.1.1 - silveline      - incarca implicit securitynews.ro
+v1.1.1 - silverline      - incarca implicit securitynews.ro
+v1.1.2 - silverline      - marcheaza banner site stiri afisate
 -->
 
 <html>
@@ -27,7 +28,7 @@ v1.1.1 - silveline      - incarca implicit securitynews.ro
 </head>
 
 <body>
-<table width="1000" border="1" cellspacing="0" cellpadding="0" align="center">
+<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center">
 <tr>
   <th colspan="2"><img src="tabs/itmanagement.png" width="1000" height="80" align="rigth" border="0" alt="IT management - stirile care conteaza" /></th>
   </tr>
@@ -132,30 +133,67 @@ function cn(o){
      return cn_output;  
 }
 
+function unSelectAllBanner(){
+  $("#secbutton").attr("src","tabs/securitynews.png");
+  $("#zfbutton").attr("src","tabs/zf_businesshitech.png");
+  $("#rltehbutton").attr("src","tabs/rltehnologie.png");
+  $("#cnetbutton").attr("src","tabs/cnet.png");
+  $("#cnnbutton").attr("src","tabs/cnn_tech.png");
+}
+
 //event listeners on click buttons
 function zf_list(){
   var headlines = "<h2>ZF Business Hih-Tech Latest News</h2>";
+  
+  //un-highligh all banners
+  unSelectAllBanner();
+  //highligh ZF banner
+  $("#zfbutton").attr("src","tabs/zf_businesshitech_sel.png");
+
   document.getElementById("continut").innerHTML = zf_b_output;
 }
 
 function rlteh_list(){
  var headlines = "<h2>Romania Libera - Ce mai este nou in IT</h2>";
   document.getElementById("continut").innerHTML = rlteh_output;
+
+  //un-highligh all banners
+  unSelectAllBanner();
+  //highligh RL banner
+  $("#rltehbutton").attr("src","tabs/rltehnologie_sel.png");
 }
 
 function cn_list(){
  // C.NET Secuity Top News;
   document.getElementById("continut").innerHTML = cn_output;
+
+  //un-highligh all banners
+  unSelectAllBanner();
+  //highligh CNET banner
+  $("#cnetbutton").attr("src","tabs/cnet_sel.png");
+
 }
 
 function ct_list(){
  var headlines = "<h2>CNN World Wide Technology News</h2>";
   document.getElementById("continut").innerHTML = ct_output;
+  
+  //un-highligh all banners
+  unSelectAllBanner();
+  //highligh CNN banner
+  $("#cnnbutton").attr("src","tabs/cnn_tech_sel.png");
 }
 
 function sn_list(){
  var headlines = "<h2>SecurityNews.ro - Ultimele Stiri din Securitate IT</h2>";
   document.getElementById("continut").innerHTML = sn_output;
+
+  //un-highligh all banners
+  unSelectAllBanner();
+  //highligh SecurityNews banner
+  $("#secbutton").attr("src","tabs/securitynews_sel.png");
+
+
 }
 
 // Add event listener to each logo of news site'
