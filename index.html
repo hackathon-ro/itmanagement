@@ -141,6 +141,14 @@ function unSelectAllBanner(){
   $("#cnnbutton").attr("src","tabs/cnn_tech.png");
 }
 
+$(document).ready(function(e){
+  $("#zfbutton").css('cursor', 'pointer');
+  $("#cnetbutton").css('cursor', 'pointer');
+  $("#cnnbutton").css('cursor', 'pointer');
+  $("#secbutton").css('cursor', 'pointer');
+  $("#rltehbutton").css('cursor', 'pointer');
+});
+
 //event listeners on click buttons
 function zf_list(){
   var headlines = "<h2>ZF Business Hih-Tech Latest News</h2>";
