@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- 
+
+Nume Proiect: IT management
+Nume Echipa : silverline
+Membri Echipa : Florin-Mihai Iliescu, Bogdan Stirbat
+
+URL:
+
+Masa Nr: 11
+Categorie: Web
+
+v1.0.0 - Florin-Mihai Iliescu - iliescufm@yahoo.com Versiune Initiala
+v1.1.0 - Bogdan Stirbat - bogdan.stirbat@gmail.com Modificare functie cautare pentru zf.
+-->
+
+<html>
+<head>
+<title>IT management - stirile care conteaza</title>
+<script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
+  <script type="text/javascript" src="http://yui.yahooapis.com/gallery-2010.01.27-20/build/gallery-yql/gallery-yql-min.js"></script>  
+<style type='text/css'>
+  #continut { width: 800px; margin-left: 1%; border: 0px solid gray; padding: 1px; height: 400px; overflow: auto; }
+</style>
+</head>
+
+<body>
+<table width="1000" border="1" cellspacing="0" cellpadding="0" align="center">
+<tr>
+  <th colspan="2"><img src="tabs/itmanagement.png" width="1000" height="80" align="rigth" border="0" alt="IT management - stirile care conteaza" /></th>
+  </tr>
+<tr>
+  <td><img id='secbutton' src="tabs/securitynews.png" width="200" height="80" align="rigth" border="0" alt="Security News" /></td>
+  <td rowspan="5" width="800"><div id='continut'></div></td>
+</tr>
+<tr>
+  <td><img id='zfbutton' src="tabs/zf_businesshitech.png" width="200" height="80" align="rigth" border="0" alt="ZF Business Hi-Tech" /></td>
+</tr>
+<tr>
+  <td><img id='rltehbutton' src="tabs/rltehnologie.png" width="200" height="80" align="rigth" border="0" alt="Romania Libera Tehnologie" /></td>
+</tr>
+<tr>
+  <td><img id='cnetbutton' src="tabs/cnet.png" width="200" align="rigth" height="80" border="0" alt="CNET Security & Privacy" /></td>
+</tr>
+<tr>
+  <td><img id='cnnbutton' src="tabs/cnn_tech.png" width="200" align="rigth" height="80" border="0" alt="CNN Technology" /></td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#ee3e00"> <center> <br> www.itmanagement.ro | dezvoltat de <b>silverline</b> <br> Florin-Mihai Iliescu si Bogdan Stirbat <br> 27-28 octombrie 2012 | Hackathon | Bucuresti | masa nr. 11</td>
+</tr>
+</table>
+
+<script>
+
+
+var cn_output = '';
+var ct_output = '';
+var sn_output = '';
+var zf_b_output = '';
+var rlteh_output = '';
+
+
+
+  function sn(o){
+    var items = o.query.results.item;
+    var output = '';
+    var no_items=items.length;
+    for(var i=0;i<no_items;i++){
+      var title = items[i].title;
+      var link = items[i].link;
+      var desc = items[i].description;
+      var categ = items[i].category;
+      sn_output += "<h3><a href='" + link + "'>"+categ + " : " + title+"</a></h3>" + desc + "<hr/>";
+    }
+  }
+  
+  function zf(o){
+    var items = o.query.results.item;
+    var output = '';
+    var no_items=items.length;
+    for(var i=0;i<no_items;i++){
+      var title = items[i].title;
+      var link = items[i].link;
+      var desc = items[i].description;
+      var categ = items[i].category;
+      if(link.indexOf('business-hi-tech') != -1){
+        zf_b_output += "<h3><a href='" + link + "'>"+categ + " : " + title+"</a></h3>" + desc + "<hr/>";
+      }
+    }
+  }
+  
+
+  function rlteh(o){
+    var items = o.query.results.item;
+    var no_items=items.length;
+    for(var i=0;i<no_items;i++){
+      var title = items[i].title;
+      var link = items[i].link;
+      var desc = items[i].description;
+      rlteh_output += "<h3><a href='" + link + "'>" + title + "</a></h3>" + desc + "<hr/>";
+    }
+  // intoarce rezultat query  
+  return rlteh_output;  
+  }
+
+ function ct(o){
+    var items = o.query.results.item;
+    var no_items=items.length;
+    for(var i=0;i<no_items;i++){
+      var title = items[i].title;
+      var link  = items[i].link;
+      var desc  = items[i].description;
+      var date  = items[i].pubDate;
+      ct_output += "<h3><a href='" + link + "'>" + title + "</a></h3>" + desc + "<br><br>" + date + "<hr/>";
+    }
+   // intoarce rezultat query 
+   return ct_output;
+  }
+
+
+function cn(o){
+     var items = o.query.results.item;
+     var no_items=items.length;
+      for(var i=0;i<no_items;i++){
+       var title = items[i].title;
+       var link  = items[i].link;
+       var desc  = items[i].description;
+       var date  = items[i].pubDate;
+       cn_output += "<h3><a href='" + link + "'>" + title + "</a></h3>" + desc + "<br><br>" + date + "<hr/>";
+       }
+      // intoarce rezultat query
+     return cn_output;  
+}
+
+//event listeners on click buttons
+function zf_list(){
+  var headlines = "<h2>ZF Business Hih-Tech Latest News</h2>";
+  document.getElementById("continut").innerHTML = zf_b_output;
+}
+
+function rlteh_list(){
+ var headlines = "<h2>Romania Libera - Ce mai este nou in IT</h2>";
+  document.getElementById("continut").innerHTML = rlteh_output;
+}
+
+function cn_list(){
+ // C.NET Secuity Top News;
+  document.getElementById("continut").innerHTML = cn_output;
+}
+
+function ct_list(){
+ var headlines = "<h2>CNN World Wide Technology News</h2>";
+  document.getElementById("continut").innerHTML = ct_output;
+}
+
+function sn_list(){
+ var headlines = "<h2>SecurityNews.ro - Ultimele Stiri din Securitate IT</h2>";
+  document.getElementById("continut").innerHTML = sn_output;
+}
+
+// Add event listener to each logo of news site'
+document.getElementById('zfbutton').addEventListener('click',zf_list,false);
+document.getElementById('cnetbutton').addEventListener('click',cn_list,false);
+document.getElementById('cnnbutton').addEventListener('click',ct_list,false);
+document.getElementById('secbutton').addEventListener('click',sn_list,false);
+document.getElementById('rltehbutton').addEventListener('click',rlteh_list,false);
+
+</script>
+
+
+<script src ='https://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fwww.infologica.ro%2Fhackover%2Fsecuritynews.xml%22%20AS%20sn_table%3B%20SELECT%20*%20FROM%20sn_table%3B&format=json&diagnostics=true&callback=sn'>
+</script>
+
+<script src='https://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fwww.infologica.ro%2Fhackover%2Fromanialiberatehnologie.xml%22%20AS%20rlt_table%3B%20SELECT%20*%20FROM%20rlt_table%3B&format=json&diagnostics=true&callback=rlteh'>
+</script>   
+
+<script src ='https://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fwww.infologica.ro%2Fcnetsecu.xml%22%20AS%20cn_table%3B%20SELECT%20*%20FROM%20cn_table&format=json&diagnostics=true&callback=cn'>
+</script>   
+
+<script src ='https://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fwww.infologica.ro%2Fcnntech.xml%22%20AS%20ct_table%3B%20SELECT%20*%20FROM%20ct_table&format=json&diagnostics=true&callback=ct'>
+</script>
+
+<script src='http://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fwww.infologica.ro%2Fziarulfin.xml%22%20AS%20zf_table%3B%20SELECT%20*%20FROM%20zf_table&format=json&diagnostics=true&callback=zf'></script>
+
+</body>
+</html>
