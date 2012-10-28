@@ -12,17 +12,18 @@ Categorie: Web
 
 v1.0.0 - Florin-Mihai Iliescu - iliescufm@yahoo.com Versiune Initiala
 v1.1.0 - Bogdan Stirbat - bogdan.stirbat@gmail.com Modificare functie cautare pentru zf.
+v1.1.1 - silveline      - incarca implicit securitynews.ro
 -->
 
 <html>
 <head>
 <title>IT management - stirile care conteaza</title>
-<script type="text/javascript" src="jquery.js"></script>
-  <script type="text/javascript" src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
+ <script type="text/javascript" src="jquery.js"></script>
+ <script type="text/javascript" src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
   <script type="text/javascript" src="http://yui.yahooapis.com/gallery-2010.01.27-20/build/gallery-yql/gallery-yql-min.js"></script>  
-<style type='text/css'>
+ <style type='text/css'>
   #continut { width: 800px; margin-left: 1%; border: 0px solid gray; padding: 1px; height: 400px; overflow: auto; }
-</style>
+ </style>
 </head>
 
 <body>
@@ -60,9 +61,7 @@ var sn_output = '';
 var zf_b_output = '';
 var rlteh_output = '';
 
-
-
-  function sn(o){
+function sn(o){
     var items = o.query.results.item;
     var output = '';
     var no_items=items.length;
@@ -73,9 +72,9 @@ var rlteh_output = '';
       var categ = items[i].category;
       sn_output += "<h3><a href='" + link + "'>"+categ + " : " + title+"</a></h3>" + desc + "<hr/>";
     }
-  }
+ }
   
-  function zf(o){
+function zf(o){
     var items = o.query.results.item;
     var output = '';
     var no_items=items.length;
@@ -182,6 +181,13 @@ document.getElementById('rltehbutton').addEventListener('click',rlteh_list,false
 </script>
 
 <script src='http://query.yahooapis.com/v1/public/yql?q=USE%20%22http%3A%2F%2Fwww.infologica.ro%2Fziarulfin.xml%22%20AS%20zf_table%3B%20SELECT%20*%20FROM%20zf_table&format=json&diagnostics=true&callback=zf'></script>
+
+<script type="text/javascript"> 
+ $(document).ready(function(e){
+ var stiri = $("#continut").html();
+ if (stiri == '') { sn_list();}
+ });
+</script>
 
 </body>
 </html>
