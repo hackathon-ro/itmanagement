@@ -5,3 +5,5 @@ serviciul itmanagement integreaza stiri IT publicate pe situri de specialitate s
 categoria:Web
 
 tehnologii de baza: YQL.
+
+just click on index.html to get lates news with no pop-ups and adds!
